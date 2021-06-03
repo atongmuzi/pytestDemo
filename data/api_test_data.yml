@@ -38,3 +38,4 @@ test_pre_trade:
   #用户预下单的下单类型，商品ID，sku类型，skuno，活动类型，是否使用P币，期望结果，期望返回码，期望返回信息
   #order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin, except_result, except_code, except_msg
   - [1,308,1,"20210511420000112137694-2",[],false,True,0,"success"]
+  - [1,308,1,"20210511420000112137694-3",[],false,True,0,"success"]
