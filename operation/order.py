@@ -22,5 +22,16 @@ def pre_trade(order_type,item_id,sku_type,sku_no,act_id_list,use_pcoin):
         "Content-Type": "application/json"
 
     }
+    result = ResultBase()
     res = order.pre_order(json=json_data,headers=header)
+    result.success = False
+    if res.json()["code"] == 0:
+        result.success = True
+    else:
+        result.error = "接口返回码：【 {} 】,返回信息：{} ".format(res.json()["code"], res.json()["msg"])
+    result.msg = res.json()["msg"]
+    result.response = res
+
+
+
 
