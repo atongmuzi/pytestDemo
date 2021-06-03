@@ -8,3 +8,4 @@ init_sql:
     - "DELETE FROM user WHERE username = '测试test'"
   delete_register_user: "DELETE FROM user WHERE username = '测试test'"
   update_user_telephone: "UPDATE user SET telephone = '13500010004' WHERE id = 4"
+  delete_delete_user_orders: "DELETE FROM  "

@@ -14,16 +14,17 @@ def step_1(order_type, item_id, sku_no, use_pcoin):
 
 class TestUserTrade():
     """用户下单"""
+
     @pytest.mark.parametrize(
         "order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin,"
-        " except_result, except_code, except_msg",api_data["test_pre_trade"])
-    def test_user_pre_trade(self, order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin, except_result, except_code, except_msg):
+        " except_result, except_code, except_msg", api_data["test_pre_trade"])
+    @pytest.mark.usefixtures("delete_user_orders")
+    def test_user_pre_trade(self, order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin, except_result,
+                            except_code, except_msg):
         logger.info("**********开始执行测试用例**********")
         result = pre_trade(order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin)
         step_1(order_type, item_id, sku_no, use_pcoin)
         assert result.success == except_result, result.error
         assert result.response.status_code == 200
-        logger.info("code ==>> 期望结果：{}，实际结果：【{}】".format(except_code,result.response.json().get("code")))
+        logger.info("code ==>> 期望结果：{}，实际结果：【{}】".format(except_code, result.response.json().get("code")))
         logger.info("**********执行测试用例完毕**********")
-
-

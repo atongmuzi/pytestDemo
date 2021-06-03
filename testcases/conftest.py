@@ -96,3 +96,12 @@ def update_user_telephone():
     step_first()
     logger.info("修改用户操作：手工修改用户的手机号，以便用例重复执行")
     logger.info("执行SQL：{}".format(update_sql))
+
+
+@pytest.fixture(scope="function")
+def delete_user_orders():
+    """预下单之前，先清理一波该用户的order表里的订单"""
+    delete_sql = base_data["init_sql"]["delete_delete_user_orders"]
+    db.execute_db(delete_sql)
+    step_first()
+    logger.info("执行sql：{}".format(delete_sql))
