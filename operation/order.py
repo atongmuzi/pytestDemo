@@ -3,12 +3,11 @@ from api.order import order
 from common.logger import logger
 
 
-def pre_trade(order_type,item_id,sku_type,sku_no,act_id_list,use_pcoin):
+def pre_trade(order_type, item_id, sku_type, sku_no, act_id_list, use_pcoin):
     """
     预下单，选择盲盒的盒子
     :return:自定义的关键字返回结果 result
     """
-    result = ResultBase()
     json_data = {
         "order_type":order_type,
         "item_id":item_id,
@@ -23,7 +22,7 @@ def pre_trade(order_type,item_id,sku_type,sku_no,act_id_list,use_pcoin):
 
     }
     result = ResultBase()
-    res = order.pre_order(json=json_data,headers=header)
+    res = order.pre_order(json=json_data, headers=header)
     result.success = False
     if res.json()["code"] == 0:
         result.success = True
@@ -31,6 +30,7 @@ def pre_trade(order_type,item_id,sku_type,sku_no,act_id_list,use_pcoin):
         result.error = "接口返回码：【 {} 】,返回信息：{} ".format(res.json()["code"], res.json()["msg"])
     result.msg = res.json()["msg"]
     result.response = res
+    return result
 
 
 
