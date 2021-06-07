@@ -12,7 +12,7 @@ def step_1(order_type, item_id, sku_no, use_pcoin):
     logger.info("下单类型为：{}, 商品ID为：{}, sku_no为：{}, 是否使用P币：{}".format(order_type, item_id, sku_no, use_pcoin))
 
 
-class TestUserTrade():
+class TestUserTrade:
     """用户下单"""
 
     @pytest.mark.parametrize(

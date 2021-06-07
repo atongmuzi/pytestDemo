@@ -98,10 +98,16 @@ def update_user_telephone():
     logger.info("执行SQL：{}".format(update_sql))
 
 
+
 @pytest.fixture(scope="function")
 def delete_user_orders():
     """预下单之前，先清理一波该用户的order表里的订单"""
     delete_sql = base_data["init_sql"]["delete_user_orders"]
     db.execute_db(delete_sql)
     step_first()
+    logger.info("删除用户订单操作：删除用户订单")
     logger.info("执行sql：{}".format(delete_sql))
+    yield
+    db.execute_db(delete_sql)
+    step_last()
+    logger.info("执行后置SQL：{}".format(delete_sql))
