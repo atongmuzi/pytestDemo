@@ -40,4 +40,5 @@ class ReadFileData():
         print("读到数据 ==>>  {} ".format(data))
         return data
 
+
 data = ReadFileData()
